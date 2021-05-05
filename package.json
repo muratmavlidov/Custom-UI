@@ -1,0 +1,58 @@
+{
+  "private": true,
+  "name": "custom-ui",
+  "version": "0.1.0",
+  "description": "React UI library",
+  "main": "dist/index.js",
+  "module": "dist/index.es.js",
+  "sideEffects": false,
+  "scripts": {
+    "build": "rimraf dist && rollup -c && node ./write-entry.js",
+    "test": "TESTING=true rollup -c && nyc instrument tests/index.umd.js > tests/lib.js && jest --runInBand",
+    "test:coverage": "rimraf coverage && COVERAGE=true yarn test && yarn coverage",
+    "dev": "yarn --cwd demo dev",
+    "lint": "eslint '*/**/*.{js,ts,tsx}' --fix",
+    "coverage": "nyc report --reporter lcov --reporter text -t coverage --report-dir coverage"
+  },
+  "keywords": [
+    "react",
+    "ui",
+    "library",
+    "react ui library"
+  ],
+  "author": "Murat Mavlidov",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/muratmavlidov/Custom-UI.git"
+  },
+  "homepage": "https://github.com/muratmavlidov/Custom-UI",
+  "bugs": {
+    "url": "https://github.com/muratmavlidov/Custom-UI.git/issues"
+  },
+  "files": [
+    "dist"
+  ],
+  "workspaces": [
+    "demo",
+    "src",
+    "tests/app"
+  ],
+  "devDependencies": {
+    "@rollup/plugin-replace": "^2.4.2",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "rollup-plugin-size-snapshot": "^0.12.0",
+    "rollup-plugin-terser": "^7.0.2",
+    "rollup-plugin-typescript2": "^0.30.0"
+  },
+  "peerDependencies": {
+    "react": ">=16.8.0 || 17.x",
+    "react-dom": ">=16.8.0 || 17.x"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run lint && npm run test"
+    }
+  }
+}

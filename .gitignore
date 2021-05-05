@@ -1,0 +1,7 @@
+node_modules/
+dist*/
+.size-snapshot.json
+coverage
+tests/index.umd.js*
+tests/lib.js
+.nyc_output
